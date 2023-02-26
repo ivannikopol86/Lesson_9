@@ -4,7 +4,7 @@ package lesson9.arrayList;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
-//    https://github.com/stepangfil/GOIT/tree/main/src/main/java/ua/goit/module9
+
 
 public class MyArrayList<T> {
     private static final int INIT_SIZE = 5;
