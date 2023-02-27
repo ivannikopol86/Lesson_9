@@ -1,12 +1,12 @@
 package lesson9.stack;
 
 public class MyStack<E> {
-    private static Node firstElem;
-    private static Node lastElem;
+    private Node<E> firstElem;
+    private Node<E> lastElem;
     int listSize = 0;
 
     public void push(Object value) {
-        Node newElem = new Node<>(value);
+        Node<E> newElem = new Node<>();
 
         if (listSize == 0){
             newElem.nextElem = null;
@@ -21,9 +21,9 @@ public class MyStack<E> {
     }
 
     public void remove(int index) {
-        Node currentElem = lastElem;
-        Node prev;
-        Node next;
+        Node<E> currentElem = lastElem;
+        Node<E> prev;
+        Node<E> next;
         int indexElem = 1;
 
         for (int i = 1; i < listSize; i++) {
@@ -52,8 +52,7 @@ public class MyStack<E> {
     }
 
     public E peek() {
-        E returnElem = (E) lastElem.getValue();
-        return returnElem;
+        return (E) lastElem.getValue();
     }
 
     public E pop() {
@@ -73,25 +72,22 @@ public class MyStack<E> {
         return listSize;
     }
 
-    public static class Node<E> {
-        E value;
-        Node prevElem;
-        Node nextElem;
+    private static class Node<E> {
+        private E value;
+        private Node<E> prevElem;
+        private Node<E> nextElem;
 
-        Node(E value) {
-            this.value = value;
-            this.prevElem = prevElem;
-            this.nextElem = nextElem;
+        Node() {
         }
 
         public E getValue() {
             return value;
         }
-        public void setNextElem(Node nextElem) {
+        public void setNextElem(Node<E> nextElem) {
             this.nextElem = nextElem;
         }
 
-        public void setPrevElem(Node prevElem) {
+        public void setPrevElem(Node<E> prevElem) {
             this.prevElem = prevElem;
         }
     }

@@ -1,102 +1,114 @@
 package lesson9.linkedList;
 
 
+import java.util.Arrays;
 
-public class MyLinkedList <T> {
-    private static Node firstElem;
-    private static Node lastElem;
-    int listSize = 0;
+public class MyLinkedList {
+    private Node head;
+    private int size;
 
-    public void add(Object value) {
-        Node newElem = new Node<>(value);
-        if (listSize == 0){
-            newElem.nextElem = null;
-            newElem.prevElem = null;
-            firstElem = newElem;
+    public void add(int value) {
+        if (head == null) {
+            this.head = new Node(value);
         } else {
-            lastElem.nextElem = newElem;
-            newElem.prevElem = lastElem;
+            Node temp = head;
+
+            while (temp.getNext() != null) {
+                temp = temp.getNext();
+            }
+
+            temp.setNext(new Node(value));
         }
-        lastElem = newElem;
-        listSize++;
+
+        size++;
+    }
+
+    public int get(int index) {
+        int currentIndex = 0;
+        Node temp = head;
+
+        while (temp != null) {
+            if (currentIndex == index) {
+                return temp.getValue();
+            } else {
+                temp = temp.getNext();
+                currentIndex++;
+            }
+        }
+
+        throw new IllegalArgumentException();
     }
 
     public void remove(int index) {
-        Node currentElem = firstElem;
-        Node prev;
-        Node next;
-        int indexElem = 1;
+        if (index == 0) {
+            head = head.getNext();
+            size--;
+            return;
+        }
 
-        for (int i = 1; i < listSize; i++) {
-            if (index == 1) {
-                firstElem = firstElem.nextElem;
-                firstElem.setPrevElem(null);
-                listSize--;
-                break;
-            } else if (index == listSize) {
-                currentElem = lastElem.prevElem;
-                currentElem.setNextElem(null);
-                listSize--;
-                break;
-            } else if(index == indexElem) {
-                prev = currentElem.prevElem;
-                next = currentElem.nextElem;
-                prev.setNextElem(next);
-                next.setPrevElem(prev);
-                listSize--;
-                break;
+        int currentIndex = 0;
+        Node temp = head;
+
+        while (temp != null) {
+            if (currentIndex == index - 1) {
+                temp.setNext(temp.getNext().getNext());
+                size--;
+                return;
             } else {
-                currentElem = currentElem.nextElem;
-                indexElem++;
+                temp = temp.getNext();
+                currentIndex++;
             }
         }
     }
 
-    public T get(int index) {
-        Node currentElem = firstElem;
-        int indexFindElem = 1;
+    public String toString() {
+        int[] result = new int[size];
 
-        for (int i = 0; i < listSize; i++) {
-            if (indexFindElem == index) {
-                break;
-            } else {
-                currentElem = currentElem.nextElem;
-                indexFindElem++;
-            }
+        int idx = 0;
+        Node temp = head;
+
+        while (temp != null) {
+            result[idx++] = temp.getValue();
+            temp = temp.getNext();
         }
-        return (T) currentElem.getValue();
-    }
 
-    public void clear() {
-        firstElem = null;
-        lastElem = null;
-        listSize = 0;
+        return Arrays.toString(result);
     }
-
     public int size() {
-        return listSize;
+        return size;
     }
-    public static class Node<E> {
-        E value;
-        Node prevElem;
-        Node nextElem;
+    public void clear() {
+        head = null;
+        size = 0;
+    }
 
-        Node(E value) {
+    private static class Node {
+        private int value;
+        private Node next;
+
+        public Node(int value) {
+
             this.value = value;
-            this.prevElem = prevElem;
-            this.nextElem = nextElem;
         }
 
-        public E getValue() {
+        public int getValue() {
+
             return value;
         }
-        public void setNextElem(Node nextElem) {
-            this.nextElem = nextElem;
+
+        public void setValue(int value) {
+
+            this.value = value;
         }
 
-        public void setPrevElem(Node prevElem) {
-            this.prevElem = prevElem;
+        public Node getNext() {
+
+            return next;
+        }
+
+        public void setNext(Node next) {
+
+            this.next = next;
         }
     }
-
 }

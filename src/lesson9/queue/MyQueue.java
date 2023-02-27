@@ -1,12 +1,12 @@
 package lesson9.queue;
 
 public class MyQueue<E> {
-    private static Node firstElem;
-    private static Node lastElem;
+    private Node<E> firstElem;
+    private Node<E> lastElem;
     int listSize = 0;
 
     public void add(Object value) {
-        Node newElem = new Node<>(value);
+        Node<E> newElem = new Node<>();
         if (listSize == 0){
             newElem.nextElem = null;
             newElem.prevElem = null;
@@ -28,8 +28,7 @@ public class MyQueue<E> {
     }
 
     public E peek() {
-        E returnElem = (E) firstElem.getValue();
-        return returnElem;
+        return (E) firstElem.getValue();
     }
 
     public void clear() {
@@ -42,25 +41,23 @@ public class MyQueue<E> {
         return listSize;
     }
 
-    public static class Node<E> {
-        E value;
-        Node prevElem;
-        Node nextElem;
+    private static class Node<E> {
+        private E value;
+        private Node<E> prevElem;
+        private Node<E> nextElem;
 
-        Node(E value) {
-            this.value = value;
-            this.prevElem = prevElem;
-            this.nextElem = nextElem;
+        public Node() {
+
         }
 
         public E getValue() {
             return value;
         }
-        public void setNextElem(Node nextElem) {
+        public void setNextElem(Node<E> nextElem) {
             this.nextElem = nextElem;
         }
 
-        public void setPrevElem(Node prevElem) {
+        public void setPrevElem(Node<E> prevElem) {
             this.prevElem = prevElem;
         }
     }

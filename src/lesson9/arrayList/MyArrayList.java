@@ -27,8 +27,6 @@ public class MyArrayList<T> {
 
     public void remove(int index) {
         arr[index] = null;
-        Object newArr[] = new Object[arr.length - 1];
-
         clearElem(index);
         createResizeArr();
     }
@@ -51,8 +49,10 @@ public class MyArrayList<T> {
     }
 
     public Object get(int index) {
-
-        return arr[index];
+        if (index > 0 && index <= INIT_SIZE) {
+             return arr[index];
+        }
+        return null;
     }
 
     private void resizeArr() {
@@ -71,10 +71,19 @@ public class MyArrayList<T> {
     private Object[] createResizeArr() {
         Object[] newArr = new Object[arr.length - 1];
         for (int i = 0; i < newArr.length; i++) {
-            newArr[i] = arr[i];
+            if (arr[i] != null) {
+                newArr[i] = arr[i];
+            }
         }
         return arr = newArr.clone();
     }
 
+    @Override
+    public String toString() {
+        return "MyArrayList{" +
+                "arr=" + Arrays.toString(arr) +
+                ", indexCounter=" + indexCounter +
+                '}';
+    }
 }
 
