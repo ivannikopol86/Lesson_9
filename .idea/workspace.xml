@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b9c9f82-aedb-4949-ad70-8e64fc2662c7" name="Changes" comment=" lesson 9">
+    <list default="true" id="3b9c9f82-aedb-4949-ad70-8e64fc2662c7" name="Changes" comment=" lesson 9 after improvements">
+      <change afterPath="$PROJECT_DIR$/src/lesson9/arrayList/MALTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lesson9/hashMap/MHMTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lesson9/linkedList/MLLTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lesson9/queue/MQTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lesson9/stack/MSTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lesson9/arrayList/MyArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lesson9/arrayList/MyArrayList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lesson9/hashMap/MyHashMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lesson9/hashMap/MyHashMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lesson9/linkedList/MyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lesson9/linkedList/MyLinkedList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lesson9/queue/MyQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lesson9/queue/MyQueue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lesson9/stack/MyStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lesson9/stack/MyStack.java" afterDir="false" />
@@ -47,16 +52,9 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="Lesson 9" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyArrayListTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lesson9.arrayList.MyArrayListTest" />
+  <component name="RunManager" selected="Application.MHMTest">
+    <configuration name="MALTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lesson9.arrayList.MALTest" />
       <module name="Lesson 9" />
       <extension name="coverage">
         <pattern>
@@ -68,8 +66,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyLinkedListTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lesson9.linkedList.MyLinkedListTest" />
+    <configuration name="MHMTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lesson9.hashMap.MHMTest" />
+      <module name="Lesson 9" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lesson9.hashMap.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MLLTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lesson9.linkedList.MLLTest" />
       <module name="Lesson 9" />
       <extension name="coverage">
         <pattern>
@@ -81,8 +92,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyQueueTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="lesson9.queue.MyQueueTest" />
+    <configuration name="MQTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lesson9.queue.MQTest" />
       <module name="Lesson 9" />
       <extension name="coverage">
         <pattern>
@@ -94,12 +105,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MSTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lesson9.stack.MSTest" />
+      <module name="Lesson 9" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lesson9.stack.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.MyQueueTest" />
-        <item itemvalue="Application.MyLinkedListTest" />
-        <item itemvalue="Application.MyArrayListTest" />
+        <item itemvalue="Application.MHMTest" />
+        <item itemvalue="Application.MSTest" />
+        <item itemvalue="Application.MQTest" />
+        <item itemvalue="Application.MLLTest" />
+        <item itemvalue="Application.MALTest" />
       </list>
     </recent_temporary>
   </component>
@@ -133,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677431159262</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary=" lesson 9 after improvements">
+      <created>1677517502724</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1677517502724</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -162,7 +194,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="DZ" />
     <MESSAGE value=" lesson 9" />
-    <option name="LAST_COMMIT_MESSAGE" value=" lesson 9" />
+    <MESSAGE value=" lesson 9 after improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value=" lesson 9 after improvements" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

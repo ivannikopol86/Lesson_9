@@ -1,94 +1,85 @@
 package lesson9.stack;
 
+import java.util.EmptyStackException;
+import java.util.Objects;
+
 public class MyStack<E> {
-    private Node<E> firstElem;
-    private Node<E> lastElem;
-    int listSize = 0;
+    private Node<E> head;
+    int size = 0;
 
-    public void push(Object value) {
-        Node<E> newElem = new Node<>();
+    public void push(E value) {
+        Node<E> node = new Node<>(value);
+        if (value == null) {
+            throw new NullPointerException();
+        } else if (head != null) {
+            node.nextElem = head;
+        }
 
-        if (listSize == 0){
-            newElem.nextElem = null;
-            newElem.prevElem = null;
-            firstElem = newElem;
+        head = node;
+        size++;
+    }
+    public E remove(int index) {
+        E removedValue;
+
+        if (index == size - 1 && size > 0) {
+            removedValue = head.element;
+            head = head.nextElem;
         } else {
-            lastElem.nextElem = newElem;
-            newElem.prevElem = lastElem;
+            Node<E> node = indexByPointer(index);
+            removedValue = node.nextElem.element;
+            node.nextElem = node.nextElem.nextElem;
         }
-        lastElem = newElem;
-        listSize++;
+
+        size--;
+        return removedValue;
     }
-
-    public void remove(int index) {
-        Node<E> currentElem = lastElem;
-        Node<E> prev;
-        Node<E> next;
-        int indexElem = 1;
-
-        for (int i = 1; i < listSize; i++) {
-            if (index == 1) {
-                firstElem = firstElem.nextElem;
-                firstElem.setPrevElem(null);
-                listSize--;
-                break;
-            } else if (index == listSize) {
-                currentElem = lastElem.prevElem;
-                currentElem.setNextElem(null);
-                listSize--;
-                break;
-            } else if(index == indexElem) {
-                prev = currentElem.prevElem;
-                next = currentElem.nextElem;
-                prev.setNextElem(next);
-                next.setPrevElem(prev);
-                listSize--;
-                break;
-            } else {
-                currentElem = currentElem.nextElem;
-                indexElem++;
-            }
-        }
-    }
-
-    public E peek() {
-        return (E) lastElem.getValue();
-    }
-
-    public E pop() {
-        E returnElem = (E) lastElem.getValue();
-        lastElem = lastElem.prevElem;
-        lastElem.setNextElem(null);
-        listSize--;
-        return returnElem;
-    }
-
     public void clear() {
-        firstElem = null;
-        lastElem = null;
+        head = null;
+        size = 0;
+    }
+    public int size() {
+        return size;
+    }
+    public E peek() {
+        if (head == null) {
+            throw new EmptyStackException();
+        }
+
+        return head.element;
+    }
+    public E pop() {
+        if (head == null) {
+            throw new EmptyStackException();
+        }
+
+        E element = head.element;
+        head = head.nextElem;
+        size--;
+        return element;
+    }
+    private Node<E> indexByPointer(int index) {
+        Objects.checkIndex(index, size);
+
+        Node<E> node = head;
+        for (int i = 0; i < size - index; i++) {
+            node = node.nextElem;
+        }
+
+        return node;
     }
 
-    public int size() {
-        return listSize;
-    }
+
+
+
+
 
     private static class Node<E> {
-        private E value;
-        private Node<E> prevElem;
-        private Node<E> nextElem;
+        E element;
+        Node<E> nextElem;
 
-        Node() {
-        }
-
-        public E getValue() {
-            return value;
-        }
-        public void setNextElem(Node<E> nextElem) {
-            this.nextElem = nextElem;
+        Node (E element) {
+            this.element = element;
         }
 
-        public void setPrevElem(Node<E> prevElem) {
-            this.prevElem = prevElem;
-        }
     }
 }

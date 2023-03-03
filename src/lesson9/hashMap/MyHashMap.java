@@ -1,5 +1,6 @@
 package lesson9.hashMap;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class MyHashMap<K,V> {
@@ -101,23 +102,25 @@ public class MyHashMap<K,V> {
         }
     }
 
+
+
     private static class Node<K, V> {
-        private int hashCode;
+        private final int hashCode;
         private final K key;
         private V value;
-        private Node nextNode;
+        private Node<K, V> nextNode;
 
-        Node(int hashCode, K key, V value, Node nextNode) {
+        Node(int hashCode, K key, V value, Node<K, V> nextNode) {
             this.hashCode = hashCode;
             this.key = key;
             this.value = value;
         }
 
-        public void setNextNode(Node nextNode) {
+        public void setNextNode(Node<K, V> nextNode) {
             this.nextNode = nextNode;
         }
 
-        public Node getNextNode() {
+        public Node<K, V> getNextNode() {
             return nextNode;
         }
 

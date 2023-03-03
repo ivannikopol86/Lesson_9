@@ -25,16 +25,20 @@ public class MyArrayList<T> {
         indexCounter++;
     }
 
-    public void remove(int index) {
-        arr[index] = null;
-        clearElem(index);
-        createResizeArr();
+    public T remove(int index) {
+        T element = get(index);
+        for (int i=index; i<indexCounter-1; i++) {
+            arr[i] = arr[i+1];
+        }
+        indexCounter--;
+        return element;
+
     }
 
     public void clear() {
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = null;
-        }
+        arr = (T[])new Object[1];
+        indexCounter = 0;
+
     }
 
     public int size() {
@@ -48,9 +52,9 @@ public class MyArrayList<T> {
         return counter;
     }
 
-    public Object get(int index) {
+    public T get(int index) {
         if (index > 0 && index <= INIT_SIZE) {
-             return arr[index];
+             return (T) arr[index];
         }
         return null;
     }
@@ -58,24 +62,6 @@ public class MyArrayList<T> {
     private void resizeArr() {
 
         arr = Arrays.copyOf(arr, arr.length * 2);
-    }
-
-    private Object clearElem(int index) {
-        arr[index] = null;
-        for (; index < arr.length - 1; index++) {
-            arr[index] = arr[index + 1];
-        }
-        return arr;
-    }
-
-    private Object[] createResizeArr() {
-        Object[] newArr = new Object[arr.length - 1];
-        for (int i = 0; i < newArr.length; i++) {
-            if (arr[i] != null) {
-                newArr[i] = arr[i];
-            }
-        }
-        return arr = newArr.clone();
     }
 
     @Override

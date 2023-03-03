@@ -2,113 +2,107 @@ package lesson9.linkedList;
 
 
 import java.util.Arrays;
+import java.util.Objects;
 
-public class MyLinkedList {
-    private Node head;
+public class MyLinkedList<T> {
+    private Node<T> head;
+    private Node<T> last;
     private int size;
 
-    public void add(int value) {
-        if (head == null) {
-            this.head = new Node(value);
+    public void add(T value) {
+        Node<T> node = new Node<>(value);
+
+        if (size == 0) {
+            head = last = node;
         } else {
-            Node temp = head;
-
-            while (temp.getNext() != null) {
-                temp = temp.getNext();
-            }
-
-            temp.setNext(new Node(value));
+            node.prev = last;
+            last.next = node;
+            last = node;
         }
-
         size++;
     }
+    public T remove(int index) {
+        T removedValue;
 
-    public int get(int index) {
-        int currentIndex = 0;
-        Node temp = head;
+        if (index == 0 && size > 0) {
+            removedValue = head.element;
+            head = head.next;
 
-        while (temp != null) {
-            if (currentIndex == index) {
-                return temp.getValue();
-            } else {
-                temp = temp.getNext();
-                currentIndex++;
+            if (head == null) {
+                last = null;
+            }
+        } else {
+            Node<T> node = removeIndex(index);
+            removedValue = node.element;
+            if (node.next != null & node.prev != null) {
+                node.prev.next = node.next;
+                node.next.prev = node.prev;
+            }
+
+            if (index == size - 1) {
+                last = last.prev;
             }
         }
 
-        throw new IllegalArgumentException();
+        size--;
+        return removedValue;
     }
 
-    public void remove(int index) {
-        if (index == 0) {
-            head = head.getNext();
-            size--;
-            return;
-        }
+    public T get(int index) {
+        return removeIndex(index).element;
+    }
 
-        int currentIndex = 0;
-        Node temp = head;
+    public Node<T> removeIndex(int index) {
+        Objects.checkIndex(index, size);
 
-        while (temp != null) {
-            if (currentIndex == index - 1) {
-                temp.setNext(temp.getNext().getNext());
-                size--;
-                return;
-            } else {
-                temp = temp.getNext();
-                currentIndex++;
+        Node<T> node;
+        if (index < size / 2) {
+            node = head;
+            for (int i = 0; i < index; i++) {
+                node = node.next;
+            }
+        } else {
+            node = last;
+            for (int i = size - 1; i > index; i--) {
+                node = node.prev;
             }
         }
+
+        return node;
     }
 
+
+        public int size () {
+            return size;
+        }
+        public void clear () {
+            head = null;
+            size = 0;
+        }
     public String toString() {
-        int[] result = new int[size];
+        Object[] result = new Object[size];
 
-        int idx = 0;
-        Node temp = head;
+        Node node = head;
+        int cn = 0;
 
-        while (temp != null) {
-            result[idx++] = temp.getValue();
-            temp = temp.getNext();
+        while (node != null) {
+            result[cn++] = node.element;
+            node = node.next;
         }
 
         return Arrays.toString(result);
     }
-    public int size() {
-        return size;
-    }
-    public void clear() {
-        head = null;
-        size = 0;
-    }
 
-    private static class Node {
-        private int value;
-        private Node next;
 
-        public Node(int value) {
+        private static class Node<T> {
+             T element;
+             Node<T> next;
+             Node<T> prev;
 
-            this.value = value;
-        }
+            public Node(T element) {
+                this.element = element;
 
-        public int getValue() {
+            }
 
-            return value;
-        }
-
-        public void setValue(int value) {
-
-            this.value = value;
-        }
-
-        public Node getNext() {
-
-            return next;
-        }
-
-        public void setNext(Node next) {
-
-            this.next = next;
         }
     }
-}
